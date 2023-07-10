@@ -94,7 +94,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Kabita Panday','kabita@gmail.com','kabita@123','admin'),(2,'john doe','john','john@gmail.com','user'),(3,'Prakshit Poudel','123','prakshit@gmail.com','user'),(4,'Simran Aryal','simran@123','simran@gmail.com','user');
+INSERT INTO `users` VALUES (1,'hello','hello@gmail.com','hello@123','admin'),(2,'john doe','john','john@gmail.com','user'),(3,'test','123','test@gmail.com','user'),(4,'final','simran@123','final@gmail.com','user');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
