@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        /* CSS styles omitted for brevity */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+
+        <div class="night-mode">
+            <input type="checkbox" id="night-mode-checkbox">
+            <label for="night-mode-checkbox"><span>☀</span><span>🌙</span></label>
+        </div>
+
+        <h3>User Management</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[3] }}</td>
+                    <td>{{ user[4] }}</td>
+                    <td class="action-buttons">
+                        <button onclick="modifyUser({{ user[0] }})">Modify</button>
+                        <button onclick="deleteUser({{ user[0] }})">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <h3>Content Management</h3>
+        <p>Example feature: Add a new content item</p>
+
+        <h3>Analytics and Reporting</h3>
+        <p>Example feature: Generate a monthly report</p>
+
+        <h3>Dashboard Customization</h3>
+        <p>Example feature: Change the dashboard theme</p>
+
+        <h3>Access Control</h3>
+        <p>Example feature: Create a new user role</p>
+
+        <h3>Notifications and Alerts</h3>
+        <p>Example feature: Send a notification to all users</p>
+
+        <h3>Data Management</h3>
+        <p>Example feature: Export user data to CSV</p>
+
+        <h3>Security and Authentication</h3>
+        <p>Example feature: Enable two-factor authentication</p>
+
+        <h3>System Settings</h3>
+        <p>Example feature: Update system timezone</p>
+
+        <h3>Help and Support</h3>
+        <p>Example feature: Access help documentation</p>
+
+        <a href="/admin/logout">Logout</a>
+    </div>
+
+    <script>
+        const nightModeCheckbox = document.getElementById('night-mode-checkbox');
+        const body = document.body;
+
+        nightModeCheckbox.addEventListener('change', function() {
+            body.classList.toggle('night-mode');
+        });
+
+        function modifyUser(userId) {
+            window.location.href = '/admin/modify_user/' + userId;
+        }
+
+        function deleteUser(userId) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                const form = document.createElement('form');
+                form.method = 'post';
+                form.action = '/admin/delete_user/' + userId;
+
+                const csrfToken = document.createElement('input');
+                csrfToken.type = 'hidden';
+                csrfToken.name = 'csrf_token';
+                csrfToken.value = '{{ csrf_token }}';  // Update this line
+
+                form.appendChild(csrfToken);
+                document.body.appendChild(form);
+
+                form.submit();
+            }
+        }
+    </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Admin Dashboard</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/admin/logout">Logout</a>
+</body>
+</html> -->

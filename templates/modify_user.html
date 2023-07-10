@@ -1,0 +1,19 @@
+<h1>Modify User</h1>
+<form id="modify-user-form" action="{{ url_for('admin_modify_user', user_id=user.user_id) }}" method="POST">
+    <div class="form-group">
+        <label for="full_name">Full Name</label>
+        <input type="text" class="form-control" id="full_name" name="full_name" value="{{ user.full_name }}" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+    </div>
+    <button type="submit" onclick="updateUser()">Update</button>
+</form>
+<script>
+
+function updateUser() {
+    const form = document.getElementById('modify-user-form');
+    form.submit();
+}
+</script>
